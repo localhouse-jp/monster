@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = api
+	url = https://github.com/localhouse-jp/mon-API
+[submodule "app"]
+	path = app
+	url = https://github.com/localhouse-jp/mon
