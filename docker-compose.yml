@@ -4,6 +4,28 @@ volumes:
   settings:
 
 services:
+  api:
+    build:
+      context: ./api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app_network
+
+  app:
+    build:
+      context: ./app
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - app_network
+
   browser:
     restart: always
     image: bh.cr/balenalabs/browser-aarch64
@@ -15,11 +37,19 @@ services:
       - 'settings:/data'
     # 環境変数の設定
     environment:
-      # 表示するURLを指定（必要に応じて変更してください）
-      LAUNCH_URL: "https://example.com"
+      # アプリのURLに変更
+      LAUNCH_URL: "http://app"
       # KIOSKモード（0=無効、1=有効）
       KIOSK: 1
       # 自動更新（秒数、0=無効）
       AUTO_REFRESH: 0
       # ハードウェア加速（0=無効、1=有効）
       ENABLE_GPU: 1
+    depends_on:
+      - app
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
