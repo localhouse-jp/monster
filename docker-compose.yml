@@ -1,0 +1,25 @@
+version: '2.1'
+
+volumes:
+  settings:
+
+services:
+  browser:
+    restart: always
+    image: bh.cr/balenalabs/browser-aarch64
+    privileged: true
+    ports:
+      - "5011"  # management API (optional)
+      - "35173" # Chromium debugging port (optional)
+    volumes:
+      - 'settings:/data'
+    # 環境変数の設定
+    environment:
+      # 表示するURLを指定（必要に応じて変更してください）
+      LAUNCH_URL: "https://example.com"
+      # KIOSKモード（0=無効、1=有効）
+      KIOSK: 1
+      # 自動更新（秒数、0=無効）
+      AUTO_REFRESH: 0
+      # ハードウェア加速（0=無効、1=有効）
+      ENABLE_GPU: 1
