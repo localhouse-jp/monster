@@ -24,7 +24,7 @@ services:
     depends_on:
       - api
     environment:
-      - VITE_API_URL=http://api:3000
+      - VITE_API_BASE_URL=http://api:3000
     networks:
       - app_network
 
