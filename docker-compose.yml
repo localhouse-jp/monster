@@ -12,7 +12,6 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - DISABLE_API=${DISABLE_API}
     networks:
       - app_network
 
@@ -24,8 +23,6 @@ services:
       - "80:80"
     depends_on:
       - api
-    environment:
-      - API_BASE_URL=${API_BASE_URL}
     networks:
       - app_network
 
