@@ -1,0 +1,18 @@
+name: monster-timetable
+type: sw.application
+description: >-
+  時刻表表示システム - API、Tauriアプリケーションを統合したbalenaCloudアプリケーション
+data:
+  applicationEnvironmentVariables:
+    - DISPLAY: ":99"
+    - ROTATE_DISPLAY: "right"
+    - ROTATE_DELAY: "5"
+  applicationConfigVariables:
+    - BALENA_HOST_CONFIG_dtoverlay: 'vc4-fkms-v3d'
+    - BALENA_HOST_CONFIG_gpu_mem: '128'
+  defaultDeviceType: raspberry-pi-4
+  supportedDeviceTypes:
+    - raspberry-pi-4
+    - raspberry-pi-3
+    - raspberry-pi-cm4
+    - raspberry-pi-5

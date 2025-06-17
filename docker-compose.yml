@@ -19,36 +19,15 @@ services:
     build:
       context: ./app
     restart: always
-    ports:
-      - "80:80"
+    privileged: true
+    environment:
+      - DISPLAY=:0
+      - VITE_API_BASE_URL=http://api:3000
+      - UDEV=1
     depends_on:
       - api
     networks:
       - app_network
-
-  # browser:
-  #   restart: always
-  #   image: bh.cr/balenalabs/browser-aarch64
-  #   privileged: true
-  #   ports:
-  #     - "5011"  # management API (optional)
-  #     - "35173" # Chromium debugging port (optional)
-  #   volumes:
-  #     - 'settings:/data'
-  #   # 環境変数の設定
-  #   environment:
-  #     # アプリのURLに変更
-  #     LAUNCH_URL: "http://app"
-  #     # KIOSKモード（0=無効、1=有効）
-  #     KIOSK: 1
-  #     # 自動更新（秒数、0=無効）
-  #     AUTO_REFRESH: 0
-  #     # ハードウェア加速（0=無効、1=有効）
-  #     ENABLE_GPU: 1
-  #   depends_on:
-  #     - app
-  #   networks:
-  #     - app_network
 
 networks:
   app_network:
