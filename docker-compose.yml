@@ -4,16 +4,16 @@ volumes:
   settings:
 
 services:
-  api:
-    build:
-      context: ./api
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-    networks:
-      - app_network
+  # api:
+  #   build:
+  #     context: ./api
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     - app_network
 
   app:
     build:
@@ -22,10 +22,10 @@ services:
     privileged: true
     environment:
       - DISPLAY=:0
-      - VITE_API_BASE_URL=http://api:3000
+      - VITE_API_BASE_URL=https://monapi.localhouse.jp
       - UDEV=1
-    depends_on:
-      - api
+    # depends_on:
+    #   - api
     networks:
       - app_network
 
